@@ -25,13 +25,16 @@ def InitDb(request):
 
 
 def TotalRelation(request):
-    total = InitRelation.objects.count()
     api_list = []
 
-    for relation_id in range(1, total + 1):
-        relation_list = InitRelation.objects.get(id=relation_id)
-        relation_dict = model_to_dict(relation_list)
-        relation_dict.pop(u'id')
+    # for relation_id in range(1, total + 1):
+    #     relation_list = InitRelation.objects.get(id=relation_id)
+    #     relation_dict = model_to_dict(relation_list)
+    #     relation_dict.pop(u'id')
+    #     api_list.append(relation_dict)
+    for relation in InitRelation.objects.all():
+        relation_dict = model_to_dict(relation)
+        relation_dict.pop('id')
         api_list.append(relation_dict)
 
     print api_list
